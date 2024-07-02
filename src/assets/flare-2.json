@@ -1,0 +1,184 @@
+{
+  "profile": [
+    {
+      "name": "Hafiz Saeed",
+      "relations": [
+        {
+          "relation": "alma_mater",
+          "entities": ["University of Sargodha", "King Saud University"]
+        },
+        { "relation": "born_in", "entities": ["Sargodha"] },
+        { "relation": "has_father", "entities": ["Kamal-ud-Din Gujjar"] },
+        {
+          "relation": "has_siblings",
+          "entities": ["Hafiz Hamid", "Hafiz Hannan", "Hafiz Mastodon"]
+        },
+        { "relation": "has_son", "entities": ["Hafiz Talha Saeed"] },
+        { "relation": "has_wife", "entities": ["Maimoona Saeed"] },
+        { "relation": "is_chief_of", "entities": ["Jamaat-ud-Dawah"] },
+        { "relation": "is_founder_of", "entities": ["Lashkar-e-Taiba"] },
+        {
+          "relation": "responsible_for",
+          "entities": ["2008 Mumbai Attack", "2001 Indian Parliament attack"]
+        },
+        { "relation": "reward_by", "entities": ["United States"] },
+        {
+          "relation": "alias",
+          "entities": [
+            "Hafiz Sahib",
+            "Hafiz Mohammad Sayed",
+            "Muhammad Saeed",
+            "Hafiz Saeed's",
+            "Hafiz Mohammad Sayid",
+            "Hafiz Mohammad Sayeed",
+            "Hafiz Muhammad",
+            "Tata Ji",
+            "Hafez Mohammad Saeed",
+            "Saeed",
+            "Mohammad Sayed",
+            "Hafiz Mohammad Sahib"
+          ]
+        },
+        { "relation": "colour_of_eyes", "entities": ["Black"] },
+        { "relation": "colour_of_hair", "entities": ["Black"] },
+        { "relation": "criminal_charges", "entities": ["Terror Funding"] },
+        { "relation": "date_of_arrest", "entities": ["July 2019"] },
+        { "relation": "date_of_birth", "entities": ["1950-06-05T00:00:00"] },
+        {
+          "relation": "known_languages",
+          "entities": ["Urdu", "Arabic", "Punjabi"]
+        },
+        { "relation": "nationality", "entities": ["Pakistani"] },
+        {
+          "relation": "is_employee_of",
+          "entities": [
+            "Lashkar-e-Taiba's",
+            "Pakistani Markazi Muslim League",
+            "Lashkar-e-Taiba",
+            "LeT"
+          ]
+        },
+        { "relation": "has_children", "entities": ["Talha Saeed", "Talha Saeed's"] },
+        { "relation": "lives_in", "entities": ["Lahore's", "Lahore"] },
+        {
+          "relation": "countries_of_residence",
+          "entities": ["India", "Pakistani", "Pakistan"]
+        },
+        { "relation": "title", "entities": ["chief"] }
+      ]
+    },
+    {
+      "name": "Talha Saeed",
+      "relations": [
+        { "relation": "has_parents", "entities": ["Hafiz Saeed", "Hafiz Saeed's"] },
+        { "relation": "has_siblings", "entities": ["Hafiz Saeed", "Talha Saeed's"] },
+        { "relation": "countries_of_residence", "entities": ["Pakistan"] }
+      ]
+    },
+    {
+      "name": "Imran Khan",
+      "relations": [
+        { "relation": "title", "entities": ["Prime Minister"] },
+        {
+          "relation": "countries_of_residence",
+          "entities": ["Pakistan", "Pakistani"]
+        },
+        { "relation": "is_employee_of", "entities": ["PTI"] }
+      ]
+    },
+    {
+      "name": "Latif Khosa",
+      "relations": [
+        {
+          "relation": "countries_of_residence",
+          "entities": ["Pakistani"]
+        },
+        { "relation": "lives_in", "entities": ["Lahore"] }
+      ]
+    },
+    {
+      "name": "Mumtaz Zahra Baloch",
+      "relations": [
+        {
+          "relation": "countries_of_residence",
+          "entities": ["Pakistan's"]
+        },
+        { "relation": "is_employee_of", "entities": ["Ministry of Foreign Affairs"] }
+      ]
+    },
+    {
+      "name": "Saeed",
+      "relations": [
+        { "relation": "alias", "entities": ["Hafiz Saeed"] },
+        { "relation": "is_employee_of", "entities": ["Lashkar-e-Taiba"] }
+      ]
+    },
+    {
+      "name": "Arindam Bagchi",
+      "relations": [
+        { "relation": "is_employee_of", "entities": ["External Affairs Ministry"] }
+      ]
+    },
+    {
+      "name": "Mohsin Butt",
+      "relations": [
+        { "relation": "title", "entities": ["Chief", "director-general"] },
+        { "relation": "countries_of_residence", "entities": ["Pakistan"] },
+        {
+          "relation": "is_employee_of",
+          "entities": [
+            "Federal Investigation Agency",
+            "Federal Investigation Agency, National Central Bureau of Pakistan"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Narendra Modi",
+      "relations": [
+        { "relation": "title", "entities": ["Prime Minister"] },
+        { "relation": "countries_of_residence", "entities": ["India"] }
+      ]
+    },
+    { "name": "Dawood Ibrahim", "relations": [] },
+    {
+      "name": "Masood Azhar",
+      "relations": [
+        { "relation": "alma_mater", "entities": ["Jamia Uloom Islamic school"] },
+        { "relation": "born_in", "entities": ["Bahawalpur"] },
+        {
+          "relation": "designed_by",
+          "entities": ["United Nations Security Council"]
+        },
+        {
+          "relation": "has_brother",
+          "entities": ["Ibrahim Athar", "Abdul Rauf Asghar"]
+        },
+        { "relation": "has_father", "entities": ["Allah Bakhsh Shabbir"] },
+        { "relation": "is_founder_of", "entities": ["Jaish-e-Mohammed"] },
+        {
+          "relation": "responsible_for",
+          "entities": ["2016 Pathankot Attack"]
+        },
+        { "relation": "travelled_to", "entities": ["Srinagar"] },
+        {
+          "relation": "alias",
+          "entities": [
+            "Maulana Mohammad Masood Azhar Alvi",
+            "Maulana Masood Azhar",
+            "Mohammad Masood Azhar Alvi",
+            "Vali Adam Issa"
+          ]
+        },
+        { "relation": "date_of_arrest", "entities": ["February 1994"] },
+        { "relation": "date_of_birth", "entities": ["1968-07-10T00:00:00"] },
+        { "relation": "released_on", "entities": ["December 1999"] },
+        { "relation": "travelled_in", "entities": ["1994"] },
+        { "relation": "is_employee_of", "entities": ["Jaish-e-Muhammad"] },
+        { "relation": "title", "entities": ["chief"] }
+      ]
+    }
+  ],
+  "status": "success",
+  "has_person": 1
+}
