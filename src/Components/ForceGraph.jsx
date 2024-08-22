@@ -34,10 +34,12 @@ const relationIcons = {
   "released_on": "\uf073", // CalendarIcon (reuse)
 };
 
+// Function to extract profiles
 const extractProfileNames = (data) => {
   return data.profile.map(person => ({ id: person.name, type: 'profile' }));
 };
 
+// Function to extract relations and ensure nodes are connected
 const extractRelations = (data, profileName) => {
   const profile = data.profile.find(person => person.name === profileName);
   if (!profile) return { nodes: [], links: [] };
@@ -47,7 +49,10 @@ const extractRelations = (data, profileName) => {
 
   profile.relations.forEach(relation => {
     relation.entities.forEach(entity => {
-      nodes.push({ id: entity, type: 'entity', relation: relation.relation });
+      // Ensure we do not duplicate nodes
+      if (!nodes.find(node => node.id === entity)) {
+        nodes.push({ id: entity, type: 'entity', relation: relation.relation });
+      }
       links.push({ source: profile.name, target: entity, relation: relation.relation });
     });
   });
@@ -57,8 +62,8 @@ const extractRelations = (data, profileName) => {
 
 const ForceGraph = () => {
   const svgRef = useRef();
-  const [selectedNodes, setSelectedNodes] = useState([]);
-  const [initialNodes, setInitialNodes] = useState(extractProfileNames(jsonData));
+  const [selectedProfiles, setSelectedProfiles] = useState([]);
+  const [graphData, setGraphData] = useState({ nodes: [], links: [] });
 
   useEffect(() => {
     const width = 1600;
@@ -70,21 +75,33 @@ const ForceGraph = () => {
       .style('border', '1px solid black');
 
     const updateGraph = () => {
-      const allNodes = [...initialNodes, ...selectedNodes.flatMap(node => extractRelations(jsonData, node).nodes)];
-      const allLinks = selectedNodes.flatMap(node => extractRelations(jsonData, node).links);
+      // Merge selected profiles' nodes and links into one dataset
+      const { nodes, links } = selectedProfiles.reduce((acc, profile) => {
+        const { nodes, links } = extractRelations(jsonData, profile);
+        // Merge nodes and links, ensuring no duplicates
+        nodes.forEach(node => {
+          if (!acc.nodes.find(n => n.id === node.id)) {
+            acc.nodes.push(node);
+          }
+        });
+        acc.links.push(...links);
+        return acc;
+      }, { nodes: extractProfileNames(jsonData), links: [] });
 
-      const simulation = d3.forceSimulation(allNodes)
-        .force('link', d3.forceLink(allLinks).id(d => d.id).distance(300))
-        .force('charge', d3.forceManyBody().strength(-50))
+      setGraphData({ nodes, links });
+
+      const simulation = d3.forceSimulation(nodes)
+        .force('link', d3.forceLink(links).id(d => d.id).strength(1).distance(350))
+        .force('charge', d3.forceManyBody().strength(-100))
         .force('center', d3.forceCenter(width / 2, height / 2))
         .force('x', d3.forceX().x(width / 2).strength(0.02))
         .force('y', d3.forceY().y(height / 2).strength(0.02))
-        .force('collide', d3.forceCollide().radius(20).strength(0.7));
+        .force('collide', d3.forceCollide().radius(30).strength(0.7));
 
       svg.selectAll('*').remove();
 
       const link = svg.selectAll('.link')
-        .data(allLinks)
+        .data(links)
         .enter().append('g')
         .attr('class', 'link');
 
@@ -101,7 +118,7 @@ const ForceGraph = () => {
         .text(d => d.relation);
 
       const node = svg.selectAll('.node')
-        .data(allNodes)
+        .data(nodes)
         .enter().append('g')
         .attr('class', 'node')
         .call(d3.drag()
@@ -111,36 +128,37 @@ const ForceGraph = () => {
         )
         .on('click', (event, d) => {
           if (d.type === 'profile') {
-            if (!selectedNodes.includes(d.id)) {
-              setSelectedNodes([...selectedNodes, d.id]);
-              setInitialNodes(initialNodes.filter(node => node.id !== d.id));
+            if (!selectedProfiles.includes(d.id)) {
+              setSelectedProfiles([...selectedProfiles, d.id]);
             } else {
-              setSelectedNodes(selectedNodes.filter(node => node !== d.id));
-              setInitialNodes([...initialNodes, { id: d.id, type: 'profile' }]);
+              setSelectedProfiles(selectedProfiles.filter(profile => profile !== d.id));
             }
           }
         });
 
       node.append('circle')
-        .attr('r', 10)
+        .attr('r', d => d.type === 'profile' ? 25 : 20) // Profile nodes larger
         .attr('fill', d => d.type === 'profile' ? 'orange' : '#69b3a2'); // Orange for profile nodes
 
+      // Append the icon inside the node
       node.append('text')
         .attr('font-family', 'FontAwesome') // Set FontAwesome as the font
-        .attr('font-size', '20px') // Font size for the icon
+        .attr('font-size', '16px') // Font size for the icon
         .attr('text-anchor', 'middle')
-        .attr('dy', '.35em')
-        .text(d => d.type === 'profile' ? '' : (relationIcons[d.relation] || '\uf128')) // Use FontAwesome icon or nothing for profile names
-        .attr('fill', '#555'); // Icon color
+        .attr('dy', '.35em') // Center the icon within the circle
+        .text(d => d.type === 'profile' ? '\uf007' : (relationIcons[d.relation] || '\uf128')) // Use FontAwesome user icon for profiles
+        .attr('fill', '#fff'); // Icon color (white for better contrast inside the circle)
 
+      // Append the relationship name next to the node
       node.append('text')
-        .attr('dy', d => d.type === 'profile' ? '.35em' : 25) // Adjust the position for profile names
+        .attr('dy', 35) // Position below the node
         .attr('text-anchor', 'middle')
         .style('font-size', '10px')
-        .text(d => d.type === 'profile' ? d.id : d.id); // Display the profile name and relation names
+        .text(d => d.id) // Display the profile name or relation name
+        .attr('fill', '#000'); // Text color
 
-      simulation.nodes(allNodes).on('tick', ticked);
-      simulation.force('link').links(allLinks);
+      simulation.nodes(nodes).on('tick', ticked);
+      simulation.force('link').links(links);
 
       function ticked() {
         link.select('line')
@@ -175,7 +193,7 @@ const ForceGraph = () => {
     };
 
     updateGraph();
-  }, [selectedNodes, initialNodes]);
+  }, [selectedProfiles]);
 
   return (
     <svg ref={svgRef}></svg>
