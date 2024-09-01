@@ -5,34 +5,47 @@ import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CS
 
 // Unicode for FontAwesome icons
 const relationIcons = {
-  "alma_mater": "\uf19d", // AcademicCapIcon (fa-graduation-cap)
-  "born_in": "\uf015", // HomeIcon (fa-home)
-  "has_father": "\uf183", // UserIcon (fa-male)
-  "has_siblings": "\uf0c0", // UsersIcon (fa-users)
-  "has_son": "\uf183", // UserIcon (fa-male)
-  "has_wife": "\uf182", // UserGroupIcon (fa-female)
-  "is_chief_of": "\uf19c", // BuildingOfficeIcon (fa-university)
-  "is_founder_of": "\uf0c1", // IdentificationIcon (fa-link)
-  "responsible_for": "\uf0e7", // ShieldExclamationIcon (fa-bolt)
-  "reward_by": "\uf024", // FlagIcon (fa-flag)
-  "alias": "\uf2c3", // InformationCircleIcon (fa-info-circle)
-  "colour_of_eyes": "\uf06e", // EyeIcon (fa-eye)
-  "colour_of_hair": "\uf06e", // EyeIcon (reuse)
-  "criminal_charges": "\uf0e7", // ShieldExclamationIcon (reuse)
-  "date_of_arrest": "\uf073", // CalendarIcon (fa-calendar)
-  "date_of_birth": "\uf073", // CalendarIcon (reuse)
-  "known_languages": "\uf0ac", // GlobeAltIcon (fa-globe)
-  "nationality": "\uf024", // FlagIcon (reuse)
-  "is_employee_of": "\uf19c", // BuildingOfficeIcon (reuse)
-  "has_children": "\uf0c0", // UserGroupIcon (reuse)
-  "lives_in": "\uf015", // HomeIcon (reuse)
-  "countries_of_residence": "\uf0ac", // GlobeAltIcon (reuse)
-  "title": "\uf19c", // IdentificationIcon (reuse)
-  "designed_by": "\uf02d", // BookOpenIcon (fa-book)
-  "travelled_to": "\uf072", // PaperAirplaneIcon (fa-plane)
-  "travelled_in": "\uf072", // PaperAirplaneIcon (reuse)
-  "released_on": "\uf073", // CalendarIcon (reuse)
+  "alma_mater": "\uf19d", // Graduation cap icon
+  "born_in": "\uf015", // Home icon
+  "has_father": "\uf183", // Male user icon
+  "has_siblings": "\uf0c0", // Users icon
+  "has_son": "\uf183", // Male user icon (reuse)
+  "has_wife": "\uf182", // Female user icon
+  "is_chief_of": "\uf19c", // Building icon
+  "is_founder_of": "\uf0c1", // Link icon
+  "responsible_for": "\uf0e7", // Bolt icon
+  "reward_by": "\uf024", // Flag icon
+  "alias": "\uf2c3", // Information circle icon
+  "colour_of_eyes": "\uf06e", // Eye icon
+  "colour_of_hair": "\uf06e", // Eye icon (reuse)
+  "criminal_charges": "\uf0e7", // Bolt icon (reuse)
+  "date_of_arrest": "\uf073", // Calendar icon
+  "date_of_birth": "\uf073", // Calendar icon (reuse)
+  "known_languages": "\uf0ac", // Globe icon
+  "nationality": "\uf024", // Flag icon (reuse)
+  "is_employee_of": "\uf19c", // Building icon (reuse)
+  "countries_of_residence": "\uf0ac", // Globe icon (reuse)
+  "title": "\uf2b9", // Id badge icon
+  "founded": "\uf058", // Check-circle icon
+  "date_of_death": "\uf071", // Exclamation-triangle icon
+  "religion": "\uf6d0", // Praying hands icon
+  "has_daughter": "\uf183", // Female user icon (reuse)
+  "has_mother": "\uf182", // Female user icon (reuse)
+  "has_lawyer": "\uf0e3", // Gavel icon
+  "influenced": "\uf005", // Star icon
+  "inspired_by": "\uf005", // Star icon (reuse)
+  "supporter_of": "\uf25a", // Heart icon
+  "wanted_by": "\uf21e", // Crosshairs icon
+  "awards": "\uf091", // Trophy icon
+  "educational_qualification": "\uf19d", // Graduation cap icon (reuse)
+  "gender": "\uf228", // Mars symbol (for male)
+  "occupation": "\uf0b1", // Briefcase icon
+  "social_media_accounts": "\uf099", // Twitter icon (example)
+  "age_at_the_time_of_death": "\uf071", // Exclamation-triangle icon (reuse)
+  "lives_in": "\uf015", // Home icon (reuse)
+  "stateorprovinces_of_residence": "\uf0ac", // Globe icon (reuse)
 };
+
 
 // Preprocess the raw data to remove redundancies
 const preprocessData = (data) => {
