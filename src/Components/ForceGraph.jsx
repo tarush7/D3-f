@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import jsonData from '../assets/flare-2.json';
+import rawData from '../assets/newJSON.json';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CSS
 
 // Unicode for FontAwesome icons
@@ -34,6 +34,30 @@ const relationIcons = {
   "released_on": "\uf073", // CalendarIcon (reuse)
 };
 
+// Preprocess the raw data to remove redundancies
+const preprocessData = (data) => {
+  return data.profile.map(person => {
+    const uniqueRelations = {};
+
+    person.relations.forEach(relation => {
+      const key = relation.relation;
+      if (uniqueRelations[key]) {
+        uniqueRelations[key].entities = Array.from(new Set([...uniqueRelations[key].entities, ...relation.entities]));
+        uniqueRelations[key].status = Array.from(new Set([...uniqueRelations[key].status, relation.status]));
+      } else {
+        uniqueRelations[key] = { ...relation };
+      }
+    });
+
+    return {
+      ...person,
+      relations: Object.values(uniqueRelations),
+    };
+  });
+};
+
+const jsonData = { profile: preprocessData(rawData) };
+
 // Function to extract profiles
 const extractProfileNames = (data) => {
   return data.profile.map(person => ({ id: person.name, type: 'profile' }));
@@ -47,13 +71,27 @@ const extractRelations = (data, profileName) => {
   const nodes = [{ id: profile.name, type: 'profile', relation: 'profile' }];
   const links = [];
 
+  const entityRelations = {};
+
   profile.relations.forEach(relation => {
     relation.entities.forEach(entity => {
-      // Ensure we do not duplicate nodes
       if (!nodes.find(node => node.id === entity)) {
         nodes.push({ id: entity, type: 'entity', relation: relation.relation });
       }
-      links.push({ source: profile.name, target: entity, relation: relation.relation });
+
+      if (entityRelations[entity]) {
+        entityRelations[entity].push(relation.relation);
+      } else {
+        entityRelations[entity] = [relation.relation];
+      }
+    });
+  });
+
+  Object.keys(entityRelations).forEach(entity => {
+    links.push({
+      source: profile.name,
+      target: entity,
+      relation: entityRelations[entity].join(', ')
     });
   });
 
@@ -91,12 +129,23 @@ const ForceGraph = () => {
       setGraphData({ nodes, links });
 
       const simulation = d3.forceSimulation(nodes)
-        .force('link', d3.forceLink(links).id(d => d.id).strength(1).distance(350))
-        .force('charge', d3.forceManyBody().strength(-100))
-        .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('x', d3.forceX().x(width / 2).strength(0.02))
-        .force('y', d3.forceY().y(height / 2).strength(0.02))
-        .force('collide', d3.forceCollide().radius(30).strength(0.7));
+        .force('link', d3.forceLink(links).id(d => d.id).strength(0.5).distance(400)) // Weaken link strength and increase distance
+        .force('charge', d3.forceManyBody().strength(d => {
+          if (d.type === 'profile' && selectedProfiles.length > 0) {
+            return selectedProfiles.includes(d.id) ? -200 : -100; // Reduce repulsion
+          }
+          return -30; // Less repulsion for normal nodes
+        }))
+        .force('center', d3.forceCenter(width / 2, height / 2)) // Center force remains the same
+        .force('collide', d3.forceCollide().radius(30).strength(0.5)); // Reduce collision force
+
+      if (selectedProfiles.length > 0) {
+        simulation
+          .force('x', d3.forceX().x(d => selectedProfiles.includes(d.id) ? width / 2 : d.x).strength(d => selectedProfiles.includes(d.id) ? 0.03 : 0.01)) // Weaken x force
+          .force('y', d3.forceY().y(d => selectedProfiles.includes(d.id) ? height / 2 : d.y).strength(d => selectedProfiles.includes(d.id) ? 0.03 : 0.01)) // Weaken y force
+          .force('radial', d3.forceRadial(d => selectedProfiles.includes(d.id) ? 0 : Math.max(width, height) / 2, width / 2, height / 2).strength(0.05)); // Reduce radial force
+      }
+
 
       svg.selectAll('*').remove();
 

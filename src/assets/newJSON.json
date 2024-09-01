@@ -1,0 +1,944 @@
+{
+    "profile": [
+        {
+            "name": "Hafiz Saeed",
+            "relations": [
+                {
+                    "relation": "alma_mater",
+                    "entities": [
+                        "King Saud University",
+                        "University of Sargodha"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "born_in",
+                    "entities": [
+                        "Sargodha"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_father",
+                    "entities": [
+                        "Kamal-ud-Din Gujjar"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_siblings",
+                    "entities": [
+                        "Hafiz Hannan",
+                        "Hafiz Mastodon",
+                        "Hafiz Hamid"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_son",
+                    "entities": [
+                        "Hafiz Talha Saeed"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_wife",
+                    "entities": [
+                        "Maimoona Saeed"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "is_chief_of",
+                    "entities": [
+                        "Jamaat-ud-Dawah"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "is_founder_of",
+                    "entities": [
+                        "Lashkar-e-Taiba"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "responsible_for",
+                    "entities": [
+                        "2008 Mumbai Attack",
+                        "2001 Indian Parliament attack"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "reward_by",
+                    "entities": [
+                        "United States"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "alias",
+                    "entities": [
+                        "Mohammad Sayed",
+                        "Hafiz Sahib",
+                        "Hafiz Mohammad Sayid",
+                        "Hafiz Muhammad",
+                        "Hafiz Mohammad Saeed",
+                        "Hafez Mohammad Saeed",
+                        "Tata Ji",
+                        "Hafiz Mohammad Sahib",
+                        "Muhammad Saeed",
+                        "Hafiz Mohammad Sayeed",
+                        "Hafiz Mohammad Sayed"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "colour_of_eyes",
+                    "entities": [
+                        "Black"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "colour_of_hair",
+                    "entities": [
+                        "Black"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "criminal_charges",
+                    "entities": [
+                        "Terror Funding"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "date_of_arrest",
+                    "entities": [
+                        "July 2019"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "date_of_birth",
+                    "entities": [
+                        "1950-06-05T00:00:00"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "known_languages",
+                    "entities": [
+                        "Punjabi",
+                        "Urdu",
+                        "Arabic"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "nationality",
+                    "entities": [
+                        "Pakistani"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "is_employee_of",
+                    "entities": [
+                        "PMML, Pakistan Markazi Muslim League, Lashkar-e-Taiba",
+                        "PMML"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "countries_of_residence",
+                    "entities": [
+                        "Pakistan"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "alma_mater",
+                    "entities": [
+                        "King Saud University",
+                        "University of Sargodha"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "born_in",
+                    "entities": [
+                        "Sargodha"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_father",
+                    "entities": [
+                        "Kamal-ud-Din Gujjar"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_siblings",
+                    "entities": [
+                        "Hafiz Mastodon",
+                        "Hafiz Hamid",
+                        "Hafiz Hannan"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_son",
+                    "entities": [
+                        "Hafiz Talha Saeed"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_wife",
+                    "entities": [
+                        "Maimoona Saeed"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "is_chief_of",
+                    "entities": [
+                        "Jamaat-ud-Dawah"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "is_founder_of",
+                    "entities": [
+                        "Lashkar-e-Taiba"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "responsible_for",
+                    "entities": [
+                        "2008 Mumbai Attack",
+                        "2001 Indian Parliament attack"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "reward_by",
+                    "entities": [
+                        "United States"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "alias",
+                    "entities": [
+                        "Hafiz Mohammad Sayed",
+                        "Hafiz Muhammad",
+                        "Hafiz Mohammad Sayid",
+                        "Hafiz Mohammad Sahib",
+                        "Hafiz Mohammad Sayeed",
+                        "Mohammad Sayed",
+                        "Hafiz Sahib",
+                        "Muhammad Saeed",
+                        "Hafez Mohammad Saeed",
+                        "Tata Ji"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "colour_of_eyes",
+                    "entities": [
+                        "Black"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "colour_of_hair",
+                    "entities": [
+                        "Black"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "criminal_charges",
+                    "entities": [
+                        "Terror Funding"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "date_of_arrest",
+                    "entities": [
+                        "July 2019"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "date_of_birth",
+                    "entities": [
+                        "1950-06-05T00:00:00"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "known_languages",
+                    "entities": [
+                        "Punjabi",
+                        "Arabic",
+                        "Urdu"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "nationality",
+                    "entities": [
+                        "Pakistani"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "countries_of_residence",
+                    "entities": [
+                        "Pakistan"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "alma_mater",
+                    "entities": [
+                        "King Saud University",
+                        "University of Sargodha"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "born_in",
+                    "entities": [
+                        "Sargodha"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_father",
+                    "entities": [
+                        "Kamal-ud-Din Gujjar"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_siblings",
+                    "entities": [
+                        "Hafiz Mastodon",
+                        "Hafiz Hamid",
+                        "Hafiz Hannan"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_son",
+                    "entities": [
+                        "Hafiz Talha Saeed"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_wife",
+                    "entities": [
+                        "Maimoona Saeed"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "is_chief_of",
+                    "entities": [
+                        "Jamaat-ud-Dawah"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "is_founder_of",
+                    "entities": [
+                        "Lashkar-e-Taiba"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "responsible_for",
+                    "entities": [
+                        "2008 Mumbai Attack",
+                        "2001 Indian Parliament attack"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "reward_by",
+                    "entities": [
+                        "United States"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "alias",
+                    "entities": [
+                        "Hafiz Mohammad Sayed",
+                        "Hafiz Muhammad",
+                        "Hafiz Mohammad Sayid",
+                        "Hafiz Mohammad Sahib",
+                        "Hafiz Mohammad Sayeed",
+                        "Mohammad Sayed",
+                        "Hafiz Sahib",
+                        "Muhammad Saeed",
+                        "Hafez Mohammad Saeed",
+                        "Tata Ji"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "colour_of_eyes",
+                    "entities": [
+                        "Black"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "colour_of_hair",
+                    "entities": [
+                        "Black"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "criminal_charges",
+                    "entities": [
+                        "Terror Funding"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "date_of_arrest",
+                    "entities": [
+                        "July 2019"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "date_of_birth",
+                    "entities": [
+                        "1950-06-05T00:00:00"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "known_languages",
+                    "entities": [
+                        "Punjabi",
+                        "Arabic",
+                        "Urdu"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "nationality",
+                    "entities": [
+                        "Pakistani"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "origin",
+                    "entities": [
+                        "Pakistani"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Hafiz Mohammad Saeed",
+            "relations": [
+                {
+                    "relation": "is_employee_of",
+                    "entities": [
+                        "Lashkar-e-Taiba",
+                        "PMML, Pakistan Markazi Muslim League, Lashkar-e-Taiba"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "alias",
+                    "entities": [
+                        "Hafiz Saeed"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "countries_of_residence",
+                    "entities": [
+                        "Pakistan"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Samuel Paty",
+            "relations": [
+                {
+                    "relation": "date_of_death",
+                    "entities": [
+                        "October"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "BHOPAL Singh",
+            "relations": [
+                {
+                    "relation": "religion",
+                    "entities": [
+                        "Muslim"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "is_employee_of",
+                    "entities": [
+                        "Bharatiya Janata Party"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Singh",
+            "relations": [
+                {
+                    "relation": "stateorprovinces_of_residence",
+                    "entities": [
+                        "Madhya Pradesh"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "is_employee_of",
+                    "entities": [
+                        "Rajgarh Lok Sabha",
+                        "Lok Sabha"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "alias",
+                    "entities": [
+                        "Diggi Raja"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "title",
+                    "entities": [
+                        "Chief Minister",
+                        "Mr"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "lives_in",
+                    "entities": [
+                        "Bhopal"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "age",
+                    "entities": [
+                        "80 years"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Rahul Gandhi",
+            "relations": []
+        },
+        {
+            "name": "Narendra Modi",
+            "relations": []
+        },
+        {
+            "name": "Digvijaya Singh",
+            "relations": []
+        },
+        {
+            "name": "Modi",
+            "relations": [
+                {
+                    "relation": "title",
+                    "entities": [
+                        "Mr"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Jyotiraditya Scindia",
+            "relations": [
+                {
+                    "relation": "is_employee_of",
+                    "entities": [
+                        "Bharatiya Janata Party",
+                        "Congress, Bharatiya Janata Party"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "title",
+                    "entities": [
+                        "Union Minister"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Rao Yadvendra Singh",
+            "relations": [
+                {
+                    "relation": "is_employee_of",
+                    "entities": [
+                        "Congress''"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Kamal Nath-led",
+            "relations": []
+        },
+        {
+            "name": "Rodmal Nagar",
+            "relations": [
+                {
+                    "relation": "is_employee_of",
+                    "entities": [
+                        "Bharatiya Janata Party"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "title",
+                    "entities": [
+                        "MP"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Zakir Naik",
+            "relations": [
+                {
+                    "relation": "born_in",
+                    "entities": [
+                        "Mumbai"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_daughter",
+                    "entities": [
+                        "Rushda Naik",
+                        "Zikra Naik"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_father",
+                    "entities": [
+                        "Dr Abdul Karim Naik"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_lawyer",
+                    "entities": [
+                        "Akhberdin Abdul Kader"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_mother",
+                    "entities": [
+                        "Roshan Naik"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_son",
+                    "entities": [
+                        "Fariq Naik"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_wife",
+                    "entities": [
+                        "Farhat Naik"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "influenced",
+                    "entities": [
+                        "Sri Lanka Easter Blast",
+                        "Zahran Hasim",
+                        "2016 Dhaka Cafe Blast"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "inspired_by",
+                    "entities": [
+                        "Ahmed Husein Deedat"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "is_founder_of",
+                    "entities": [
+                        "Islamic Research Foundation",
+                        "Peace TV Network"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "lives_in",
+                    "entities": [
+                        "Malaysia",
+                        "Saudi Arabia"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "supporter_of",
+                    "entities": [
+                        "Al-Qaeda",
+                        "Islamic State of Iraq and the Levant"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "wanted_by",
+                    "entities": [
+                        "National Investigation Agency"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "alias",
+                    "entities": [
+                        "Zakir Abdul Karim Naik"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "awards",
+                    "entities": [
+                        "Sharjah Award for Volutary Work",
+                        "Tokoh Ma'al Hijrah Award",
+                        "Dubai International Holy Quran Award – Islamic Personality of the Year",
+                        "Service to Islam – King Faisal Prize"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "criminal_charges",
+                    "entities": [
+                        "inciting extremism through hate speeches",
+                        "money laundering charges"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "date_of_birth",
+                    "entities": [
+                        "18 October 1965"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "educational_qualification",
+                    "entities": [
+                        "MBBS"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "gender",
+                    "entities": [
+                        "Male"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "nationality",
+                    "entities": [
+                        "Indian"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "occupation",
+                    "entities": [
+                        "Physician",
+                        "President of Islamic Research Foundation",
+                        "Public Speaker"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "social_media_accounts",
+                    "entities": [
+                        "Twitter",
+                        "Instagram",
+                        "YouTube",
+                        "Facebook",
+                        "Pinterest"
+                    ],
+                    "status": "Blue"
+                }
+            ]
+        },
+        {
+            "name": "Afzal Guru",
+            "relations": [
+                {
+                    "relation": "born_in",
+                    "entities": [
+                        "Sopore"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_son",
+                    "entities": [
+                        "Galib Guru"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "age_at_the_time_of_death",
+                    "entities": [
+                        "43"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "date_of_death",
+                    "entities": [
+                        "2013-02-09T00:00:00"
+                    ],
+                    "status": "Blue"
+                }
+            ]
+        },
+        {
+            "name": "Shah",
+            "relations": [
+                {
+                    "relation": "title",
+                    "entities": [
+                        "Mr"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Diggi Raja",
+            "relations": [
+                {
+                    "relation": "alias",
+                    "entities": [
+                        "Singh]'s"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Maulana Masood Azhar",
+            "relations": [
+                {
+                    "relation": "is_employee_of",
+                    "entities": [
+                        "Jaish-e-Mohammed"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "founded",
+                    "entities": [
+                        "2000"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "is_employee_of",
+                    "entities": [
+                        "Jaish-e-Mohammed"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "founded",
+                    "entities": [
+                        "2000"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "title",
+                    "entities": [
+                        "Maulana"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        },
+        {
+            "name": "Maulana",
+            "relations": [
+                {
+                    "relation": "is_employee_of",
+                    "entities": [
+                        "Jaish-e-Mohammed"
+                    ],
+                    "status": "Black"
+                },
+                {
+                    "relation": "title",
+                    "entities": [
+                        "Maulana Masood Azhar"
+                    ],
+                    "status": "Black"
+                }
+            ]
+        }
+    ],
+    "status": [
+        "Blue",
+        "Black"
+    ],
+    "has_person": "true"
+}
