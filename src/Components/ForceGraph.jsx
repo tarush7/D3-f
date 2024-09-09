@@ -46,7 +46,6 @@ const relationIcons = {
   "stateorprovinces_of_residence": "\uf0ac", // Globe icon (reuse)
 };
 
-
 // Preprocess the raw data to remove redundancies
 const preprocessData = (data) => {
   return data.profile.map(person => {
@@ -104,7 +103,7 @@ const extractRelations = (data, profileName) => {
     links.push({
       source: profile.name,
       target: entity,
-      relation: entityRelations[entity].join(', ')
+      relation: entityRelations[entity].join(', '),
     });
   });
 
@@ -142,23 +141,22 @@ const ForceGraph = () => {
       setGraphData({ nodes, links });
 
       const simulation = d3.forceSimulation(nodes)
-        .force('link', d3.forceLink(links).id(d => d.id).strength(0.5).distance(400)) // Weaken link strength and increase distance
+        .force('link', d3.forceLink(links).id(d => d.id).strength(0.5).distance(400))
         .force('charge', d3.forceManyBody().strength(d => {
           if (d.type === 'profile' && selectedProfiles.length > 0) {
-            return selectedProfiles.includes(d.id) ? -200 : -100; // Reduce repulsion
+            return selectedProfiles.includes(d.id) ? -200 : -100;
           }
-          return -30; // Less repulsion for normal nodes
+          return -30;
         }))
-        .force('center', d3.forceCenter(width / 2, height / 2)) // Center force remains the same
-        .force('collide', d3.forceCollide().radius(30).strength(0.5)); // Reduce collision force
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force('collide', d3.forceCollide().radius(30).strength(0.5));
 
       if (selectedProfiles.length > 0) {
         simulation
-          .force('x', d3.forceX().x(d => selectedProfiles.includes(d.id) ? width / 2 : d.x).strength(d => selectedProfiles.includes(d.id) ? 0.03 : 0.01)) // Weaken x force
-          .force('y', d3.forceY().y(d => selectedProfiles.includes(d.id) ? height / 2 : d.y).strength(d => selectedProfiles.includes(d.id) ? 0.03 : 0.01)) // Weaken y force
-          .force('radial', d3.forceRadial(d => selectedProfiles.includes(d.id) ? 0 : Math.max(width, height) / 2, width / 2, height / 2).strength(0.05)); // Reduce radial force
+          .force('x', d3.forceX().x(d => selectedProfiles.includes(d.id) ? width / 2 : d.x).strength(d => selectedProfiles.includes(d.id) ? 0.03 : 0.01))
+          .force('y', d3.forceY().y(d => selectedProfiles.includes(d.id) ? height / 2 : d.y).strength(d => selectedProfiles.includes(d.id) ? 0.03 : 0.01))
+          .force('radial', d3.forceRadial(d => selectedProfiles.includes(d.id) ? 0 : Math.max(width, height) / 2, width / 2, height / 2).strength(0.05));
       }
-
 
       svg.selectAll('*').remove();
 
@@ -168,13 +166,22 @@ const ForceGraph = () => {
         .attr('class', 'link');
 
       link.append('line')
-        .style('stroke', '#999')
-        .style('stroke-opacity', 0.6)
-        .style('stroke-width', 1.5);
+        .attr('stroke', '#999')
+        .attr('stroke-opacity', 0.6)
+        .attr('stroke-width', 1.5);
+
+      // Add Font Awesome arrow icon at the edge of the target node
+      link.append('text')
+        .attr('font-family', 'FontAwesome') // Set FontAwesome as the font
+        .attr('font-size', '16px') // Adjust the size as needed
+        .attr('text-anchor', 'middle')
+        .attr('dy', '.35em') // Adjust arrow positioning on the y-axis for overlap
+        .text('\uf061') // Right arrow FontAwesome icon (fa-arrow-right)
+        .attr('fill', '#666'); // Set the color of the arrow
 
       link.append('text')
         .attr('class', 'link-label')
-        .attr('dy', -5)
+        .attr('dy', 15)
         .attr('text-anchor', 'middle')
         .style('font-size', '10px')
         .text(d => d.relation);
@@ -199,25 +206,23 @@ const ForceGraph = () => {
         });
 
       node.append('circle')
-        .attr('r', d => d.type === 'profile' ? 25 : 20) // Profile nodes larger
-        .attr('fill', d => d.type === 'profile' ? 'orange' : '#69b3a2'); // Orange for profile nodes
+        .attr('r', d => d.type === 'profile' ? 25 : 20)
+        .attr('fill', d => d.type === 'profile' ? 'orange' : '#69b3a2');
 
-      // Append the icon inside the node
       node.append('text')
-        .attr('font-family', 'FontAwesome') // Set FontAwesome as the font
-        .attr('font-size', '16px') // Font size for the icon
+        .attr('font-family', 'FontAwesome')
+        .attr('font-size', '16px')
         .attr('text-anchor', 'middle')
-        .attr('dy', '.35em') // Center the icon within the circle
-        .text(d => d.type === 'profile' ? '\uf007' : (relationIcons[d.relation] || '\uf128')) // Use FontAwesome user icon for profiles
-        .attr('fill', '#fff'); // Icon color (white for better contrast inside the circle)
+        .attr('dy', '.35em')
+        .text(d => d.type === 'profile' ? '\uf007' : (relationIcons[d.relation] || '\uf128'))
+        .attr('fill', '#fff');
 
-      // Append the relationship name next to the node
       node.append('text')
-        .attr('dy', 35) // Position below the node
+        .attr('dy', 35)
         .attr('text-anchor', 'middle')
         .style('font-size', '10px')
-        .text(d => d.id) // Display the profile name or relation name
-        .attr('fill', '#000'); // Text color
+        .text(d => d.id)
+        .attr('fill', '#000');
 
       simulation.nodes(nodes).on('tick', ticked);
       simulation.force('link').links(links);
@@ -230,8 +235,40 @@ const ForceGraph = () => {
           .attr('y2', d => d.target.y);
 
         link.select('text')
+          .each(function (d) {
+            const arrow = d3.select(this);
+            
+            // Calculate direction vector
+            const dx = d.target.x - d.source.x;
+            const dy = d.target.y - d.source.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Prevent division by zero
+            if (distance === 0) return;
+
+            const ux = dx / distance;
+            const uy = dy / distance;
+
+            // Get target node's radius (profile nodes have a larger radius)
+            const targetRadius = d.target.type === 'profile' ? 25 : 20;
+
+            // Add a slight offset to position the arrow outside the node
+            const arrowOffset = 8; // Additional offset to make the arrow more visible
+
+            // Calculate arrow position at the edge of the target node, with offset
+            const x_arrow = d.target.x - ux * (targetRadius + arrowOffset);
+            const y_arrow = d.target.y - uy * (targetRadius + arrowOffset);
+
+            // Set arrow position and rotation
+            arrow
+              .attr('x', x_arrow)
+              .attr('y', y_arrow)
+              .attr('transform', `rotate(${Math.atan2(dy, dx) * 180 / Math.PI}, ${x_arrow}, ${y_arrow})`);
+          });
+
+        link.select('.link-label')
           .attr('x', d => (d.source.x + d.target.x) / 2)
-          .attr('y', d => (d.source.y + d.target.y) / 2);
+          .attr('y', d => (d.source.y + d.target.y) / 2 + 15);
 
         node.attr('transform', d => `translate(${d.x},${d.y})`);
       }
