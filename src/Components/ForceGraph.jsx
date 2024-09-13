@@ -1,5 +1,7 @@
+// Import React, D3, and GSAP
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
+import { gsap } from 'gsap';
 import rawData from '../assets/newJSON.json';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CSS
 
@@ -70,27 +72,64 @@ const preprocessData = (data) => {
 
 const jsonData = { profile: preprocessData(rawData) };
 
-// Function to extract profiles
+// Extract profile names from the raw JSON data
 const extractProfileNames = (data) => {
-  return data.profile.map(person => ({ id: person.name, type: 'profile' }));
+  return data.profile.map(person => person.name);
 };
 
-// Function to extract relations and ensure nodes are connected
+// Check which profiles have relations with other profiles
+const findProfilesWithRelationsToOtherProfiles = (data) => {
+  const profileNames = extractProfileNames(data);  // Get all profile names
+  const profilesWithRelations = [];  // Array to store profiles with relations to other profiles
+
+  // Iterate over each profile
+  data.profile.forEach(person => {
+    let hasRelationWithAnotherProfile = false;  // Flag to check if this profile has relations with other profiles
+
+    // Iterate over the relations of each profile
+    person.relations.forEach(relation => {
+      relation.entities.forEach(entity => {
+        // Check if the entity is another profile
+        if (profileNames.includes(entity)) {
+          hasRelationWithAnotherProfile = true;
+        }
+      });
+    });
+
+    // If this profile has a relation with another profile, add it to the list
+    if (hasRelationWithAnotherProfile) {
+      profilesWithRelations.push(person.name);
+    }
+  });
+
+  return profilesWithRelations;
+};
+
+// Extract relations and ensure each node is an object
 const extractRelations = (data, profileName) => {
   const profile = data.profile.find(person => person.name === profileName);
   if (!profile) return { nodes: [], links: [] };
 
-  const nodes = [{ id: profile.name, type: 'profile', relation: 'profile' }];
+  const nodes = [{ id: profile.name, type: 'profile', relation: 'profile', hasProfileRelation: false }];
   const links = [];
-
   const entityRelations = {};
 
   profile.relations.forEach(relation => {
     relation.entities.forEach(entity => {
+      // Check if the entity is also a profile
+      const isProfile = data.profile.some(person => person.name === entity);
+
+      // If it's not already in the nodes array, add it
       if (!nodes.find(node => node.id === entity)) {
-        nodes.push({ id: entity, type: 'entity', relation: relation.relation });
+        nodes.push({
+          id: entity,
+          type: isProfile ? 'profile' : 'entity',  // Classify as 'profile' or 'entity'
+          relation: relation.relation,
+          hasProfileRelation: isProfile  // Mark if this node has a profile relation
+        });
       }
 
+      // Handle relations mapping for links
       if (entityRelations[entity]) {
         entityRelations[entity].push(relation.relation);
       } else {
@@ -99,6 +138,7 @@ const extractRelations = (data, profileName) => {
     });
   });
 
+  // Create links between the profile and its related entities
   Object.keys(entityRelations).forEach(entity => {
     links.push({
       source: profile.name,
@@ -107,6 +147,10 @@ const extractRelations = (data, profileName) => {
     });
   });
 
+  // Console log the nodes and links for debugging
+  console.log('Nodes:', nodes);
+  console.log('Links:', links);
+
   return { nodes, links };
 };
 
@@ -114,6 +158,10 @@ const ForceGraph = () => {
   const svgRef = useRef();
   const [selectedProfiles, setSelectedProfiles] = useState([]);
   const [graphData, setGraphData] = useState({ nodes: [], links: [] });
+
+  // Get profiles with relations to other profiles
+  const relatedProfiles = findProfilesWithRelationsToOtherProfiles(jsonData);
+  console.log('Profiles with relations to other profiles:', relatedProfiles);
 
   useEffect(() => {
     const width = 1600;
@@ -125,10 +173,8 @@ const ForceGraph = () => {
       .style('border', '1px solid black');
 
     const updateGraph = () => {
-      // Merge selected profiles' nodes and links into one dataset
       const { nodes, links } = selectedProfiles.reduce((acc, profile) => {
         const { nodes, links } = extractRelations(jsonData, profile);
-        // Merge nodes and links, ensuring no duplicates
         nodes.forEach(node => {
           if (!acc.nodes.find(n => n.id === node.id)) {
             acc.nodes.push(node);
@@ -136,7 +182,7 @@ const ForceGraph = () => {
         });
         acc.links.push(...links);
         return acc;
-      }, { nodes: extractProfileNames(jsonData), links: [] });
+      }, { nodes: extractProfileNames(jsonData).map(name => ({ id: name, type: 'profile' })), links: [] });  // Ensure initial nodes are objects
 
       setGraphData({ nodes, links });
 
@@ -205,9 +251,11 @@ const ForceGraph = () => {
           }
         });
 
+      // Add nodes and check if they have relations to other profiles
       node.append('circle')
         .attr('r', d => d.type === 'profile' ? 25 : 20)
-        .attr('fill', d => d.type === 'profile' ? 'orange' : '#69b3a2');
+        .attr('fill', d => d.type === 'profile' ? 'orange' : '#69b3a2')
+        .attr('class', d => d.type === 'profile' && relatedProfiles.includes(d.id) ? 'related-glow' : '');  // Apply glow effect to related profile nodes only
 
       node.append('text')
         .attr('font-family', 'FontAwesome')
@@ -292,6 +340,19 @@ const ForceGraph = () => {
     };
 
     updateGraph();
+
+    // GSAP glow animation for profile nodes with relations to other profiles
+    gsap.to(d3.selectAll('.related-glow').nodes(), {
+      duration: 0.5,
+      repeat: -1,  // Infinite loop
+      yoyo: true,  // Reverse the animation back
+      ease: "power1.inOut",  // Smooth easing
+      repeatDelay: 0.1, // Add a brief pause between pulses
+      attr: {
+        'stroke-width': 15  // Increase the stroke width for the glow
+      },
+      filter: "drop-shadow(0 0 20px #ff0000)"  // Bigger, brighter red glow
+    });
   }, [selectedProfiles]);
 
   return (
