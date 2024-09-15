@@ -16,10 +16,15 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@heroicons/react": "^2.1.5",
     "animate.css": "^4.1.1",
+    "canvg": "^4.0.2",
     "d3": "^7.9.0",
     "gsap": "^3.12.5",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "save-svg-as-png": "^1.4.17",
+    "svg2pdf.js": "^2.2.4"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

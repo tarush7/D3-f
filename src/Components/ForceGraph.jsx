@@ -1,7 +1,12 @@
-// Import React, D3, and GSAP
+// Import React, D3, GSAP, saveSvgAsPng, and jsPDF
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { gsap } from 'gsap';
+import { saveSvgAsPng } from 'save-svg-as-png'; // Import SaveSvgAsPng
+import { jsPDF } from 'jspdf'; // Import jsPDF for exporting to PDF
+import { svgAsPngUri } from 'save-svg-as-png'; // Import svgAsPngUri from save-svg-as-png
+import html2canvas from 'html2canvas'; // Import html2canvas
+import { svg2pdf } from 'svg2pdf.js'; // Import svg2pdf for SVG to PDF conversion
 import rawData from '../assets/newJSON.json';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CSS
 
@@ -147,10 +152,6 @@ const extractRelations = (data, profileName) => {
     });
   });
 
-  // Console log the nodes and links for debugging
-  console.log('Nodes:', nodes);
-  console.log('Links:', links);
-
   return { nodes, links };
 };
 
@@ -161,7 +162,6 @@ const ForceGraph = () => {
 
   // Get profiles with relations to other profiles
   const relatedProfiles = findProfilesWithRelationsToOtherProfiles(jsonData);
-  console.log('Profiles with relations to other profiles:', relatedProfiles);
 
   useEffect(() => {
     const width = 1600;
@@ -182,18 +182,13 @@ const ForceGraph = () => {
         });
         acc.links.push(...links);
         return acc;
-      }, { nodes: extractProfileNames(jsonData).map(name => ({ id: name, type: 'profile' })), links: [] });  // Ensure initial nodes are objects
+      }, { nodes: extractProfileNames(jsonData).map(name => ({ id: name, type: 'profile' })), links: [] });
 
       setGraphData({ nodes, links });
 
       const simulation = d3.forceSimulation(nodes)
         .force('link', d3.forceLink(links).id(d => d.id).strength(0.5).distance(400))
-        .force('charge', d3.forceManyBody().strength(d => {
-          if (d.type === 'profile' && selectedProfiles.length > 0) {
-            return selectedProfiles.includes(d.id) ? -200 : -100;
-          }
-          return -30;
-        }))
+        .force('charge', d3.forceManyBody().strength(d => (d.type === 'profile' && selectedProfiles.length > 0) ? (selectedProfiles.includes(d.id) ? -200 : -100) : -30))
         .force('center', d3.forceCenter(width / 2, height / 2))
         .force('collide', d3.forceCollide().radius(30).strength(0.5));
 
@@ -216,14 +211,13 @@ const ForceGraph = () => {
         .attr('stroke-opacity', 0.6)
         .attr('stroke-width', 1.5);
 
-      // Add Font Awesome arrow icon at the edge of the target node
       link.append('text')
-        .attr('font-family', 'FontAwesome') // Set FontAwesome as the font
-        .attr('font-size', '16px') // Adjust the size as needed
+        .attr('font-family', 'FontAwesome')
+        .attr('font-size', '16px')
         .attr('text-anchor', 'middle')
-        .attr('dy', '.35em') // Adjust arrow positioning on the y-axis for overlap
-        .text('\uf061') // Right arrow FontAwesome icon (fa-arrow-right)
-        .attr('fill', '#666'); // Set the color of the arrow
+        .attr('dy', '.35em')
+        .text('\uf061')
+        .attr('fill', '#666');
 
       link.append('text')
         .attr('class', 'link-label')
@@ -239,8 +233,7 @@ const ForceGraph = () => {
         .call(d3.drag()
           .on('start', dragstarted)
           .on('drag', dragged)
-          .on('end', dragended)
-        )
+          .on('end', dragended))
         .on('click', (event, d) => {
           if (d.type === 'profile') {
             if (!selectedProfiles.includes(d.id)) {
@@ -251,11 +244,10 @@ const ForceGraph = () => {
           }
         });
 
-      // Add nodes and check if they have relations to other profiles
       node.append('circle')
         .attr('r', d => d.type === 'profile' ? 25 : 20)
         .attr('fill', d => d.type === 'profile' ? 'orange' : '#69b3a2')
-        .attr('class', d => d.type === 'profile' && relatedProfiles.includes(d.id) ? 'related-glow' : '');  // Apply glow effect to related profile nodes only
+        .attr('class', d => d.type === 'profile' && relatedProfiles.includes(d.id) ? 'related-glow' : '');
 
       node.append('text')
         .attr('font-family', 'FontAwesome')
@@ -285,29 +277,21 @@ const ForceGraph = () => {
         link.select('text')
           .each(function (d) {
             const arrow = d3.select(this);
-            
-            // Calculate direction vector
             const dx = d.target.x - d.source.x;
             const dy = d.target.y - d.source.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
-            // Prevent division by zero
             if (distance === 0) return;
 
             const ux = dx / distance;
             const uy = dy / distance;
 
-            // Get target node's radius (profile nodes have a larger radius)
             const targetRadius = d.target.type === 'profile' ? 25 : 20;
+            const arrowOffset = 8;
 
-            // Add a slight offset to position the arrow outside the node
-            const arrowOffset = 8; // Additional offset to make the arrow more visible
-
-            // Calculate arrow position at the edge of the target node, with offset
             const x_arrow = d.target.x - ux * (targetRadius + arrowOffset);
             const y_arrow = d.target.y - uy * (targetRadius + arrowOffset);
 
-            // Set arrow position and rotation
             arrow
               .attr('x', x_arrow)
               .attr('y', y_arrow)
@@ -341,23 +325,92 @@ const ForceGraph = () => {
 
     updateGraph();
 
-    // GSAP glow animation for profile nodes with relations to other profiles
     gsap.to(d3.selectAll('.related-glow').nodes(), {
       duration: 0.5,
-      repeat: -1,  // Infinite loop
-      yoyo: true,  // Reverse the animation back
-      ease: "power1.inOut",  // Smooth easing
-      repeatDelay: 0.1, // Add a brief pause between pulses
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+      repeatDelay: 0.1,
       attr: {
-        'stroke-width': 15  // Increase the stroke width for the glow
+        'stroke-width': 15
       },
-      filter: "drop-shadow(0 0 20px #ff0000)"  // Bigger, brighter red glow
+      filter: "drop-shadow(0 0 20px #ff0000)"
     });
   }, [selectedProfiles]);
 
+  // Export as PNG function
+  const exportAsImage = () => {
+    const svgElement = svgRef.current;
+    saveSvgAsPng(svgElement, 'graph.png', { scale: 2, backgroundColor: '#ffffff' });
+  };
+
+  // **Export as PDF function using jsPDF and the PNG data URI**
+  const exportAsPdf = () => {
+    const svgElement = svgRef.current;
+
+    // Convert the SVG to PNG data URI using svgAsPngUri
+    svgAsPngUri(svgElement, { scale: 2, backgroundColor: '#ffffff' }).then((uri) => {
+      // Once the PNG is created as a data URI, we can pass it to jsPDF
+      const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'pt',
+        format: [svgElement.clientWidth, svgElement.clientHeight], // Set PDF size based on SVG size
+      });
+
+      const imgProps = pdf.getImageProperties(uri);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      // Add the PNG image to the PDF
+      pdf.addImage(uri, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+      // Save the PDF
+      pdf.save('graph.pdf');
+    }).catch((error) => {
+      console.error('Error exporting as PDF:', error);
+    });
+  };
+
+
   return (
-    <svg ref={svgRef}></svg>
+    <div>
+      {/* Export Buttons */}
+      <div style={floatingButtonStyles}>
+        <button onClick={exportAsImage} style={buttonStyle}>
+          Export as PNG
+        </button>
+
+        <button onClick={exportAsPdf} style={buttonStyle}>
+          Export as PDF
+        </button>
+      </div>
+
+
+      {/* SVG Container */}
+      <svg ref={svgRef}></svg>
+    </div>
   );
 };
+
+const floatingButtonStyles = {
+  position: 'fixed',
+  right: '20px',
+  bottom: '20px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '10px', // Space between buttons
+};
+
+const buttonStyle = {
+  padding: '10px 20px',
+  fontSize: '16px',
+  backgroundColor: '#007BFF',
+  color: '#fff',
+  border: '1px',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+};
+
 
 export default ForceGraph;
