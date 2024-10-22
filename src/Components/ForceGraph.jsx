@@ -7,7 +7,8 @@ import { jsPDF } from 'jspdf'; // Import jsPDF for exporting to PDF
 import { svgAsPngUri } from 'save-svg-as-png'; // Import svgAsPngUri from save-svg-as-png
 import html2canvas from 'html2canvas'; // Import html2canvas
 import { svg2pdf } from 'svg2pdf.js'; // Import svg2pdf for SVG to PDF conversion
-import rawData from '../assets/newJSON.json';
+// import rawData from '../assets/newJSON.json';
+import rawData from '../assets/secondJSON.json';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CSS
 
 // Unicode for FontAwesome icons

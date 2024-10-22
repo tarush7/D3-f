@@ -1,0 +1,160 @@
+{
+    "profile": [
+        {
+            "name": "Dawood Ibrahim Kaskar",
+            "relations": [
+                {
+                    "relation": "born_in",
+                    "entities": ["Ratnagiri", "<Ratnagiri>"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "has_contact_with",
+                    "entities": ["Osama bin Laden"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_daughter",
+                    "entities": ["Mehreen", "Mahrukh Ibrahim"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_father",
+                    "entities": ["Ibrahim Kaskar"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_mother",
+                    "entities": ["Amina Bi"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_siblings",
+                    "entities": ["Haseena Parker", "<Iqbal Ibrahim Kaskar>", "Shabir Ibrahim Kaskar", "<Haseena Ibrahim Parkar>", "<Shabir Ibrahim Kaskar>"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "has_son",
+                    "entities": ["Moin"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "has_wife",
+                    "entities": ["Zubeena Zareen"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "is_founder_of",
+                    "entities": ["D-Company"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "responsible_for",
+                    "entities": ["1993 Mumbai Attacks"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "wanted_by",
+                    "entities": ["United States", "India"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "alias",
+                    "entities": [
+                        "Anis Ibrahim", "Aziz Dilip", "Dawood Bhai Low quality", "Sheikh Farooqi", "Dawood Bhai", "Dowood Hassan Shaikh Ibrahim",
+                        "Dawood Hasan Shiekh Kaskar", "Dawood Ibrahim Kaskar's", "Dawood Ibrahim Memon", "Dawood Ebrahim", "Iqbal Seth",
+                        "Shaikh Ismail Abdul", "Dawood Sabri", "Shaikh Mohd Ismail Abdul Rehman", "Daud Ibrahim Memon Kaskar",
+                        "Ibrahim Shaikh Mohd Anis", "Abdul Hamid Abdul Aziz", "Iqbal Bhai", "Daud Hasan Shaikh Ibrahim Kaskar",
+                        "Kaskar Dawood Hasan", "Sheikh Dawood Hassan", "Bada Patel", "Dawood Hasan Ibrahim Kaskar"
+                    ],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "colour_of_eyes",
+                    "entities": ["Black"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "colour_of_hair",
+                    "entities": ["Black"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "criminal_charges",
+                    "entities": ["Extortion", "Terrorism", "Murder", "Drug Trafficking"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "date_of_birth",
+                    "entities": ["1955-12-26", "1955-12-26"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "known_languages",
+                    "entities": ["English", "Urdu", "Hindi"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "nationality",
+                    "entities": ["Indian"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "religion",
+                    "entities": ["Kokni Muslim", "Konkani Muslim", "Muslim-dominated"],
+                    "status": "Blue"
+                },
+                {
+                    "relation": "stateorprovince_of_birth",
+                    "entities": ["Maharastra"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "countries_of_residence",
+                    "entities": ["India", "Pakistan"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "lives_in",
+                    "entities": ["Mumbai", "Dongri, Mumbai"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "has_parents",
+                    "entities": ["Amina"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "alma_matter",
+                    "entities": ["Ahmed Sailor High School"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "has_spouse",
+                    "entities": ["Junaid Miandad", "Mehjabeen Shaikh, Zubeena Zareen", "Saniya", "Ayub"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "date_of_death",
+                    "entities": ["2006-10-22"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "has_children",
+                    "entities": ["Maria", "Mehreen", "Moin", "Mahrukh Ibrahim"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "title",
+                    "entities": ["maulana"],
+                    "status": "Black"
+                },
+                {
+                    "relation": "has_relatives",
+                    "entities": ["Dawood Ibrahim Kaskar's"],
+                    "status": "Black"
+                }
+            ]
+        }
+    ]
+}
